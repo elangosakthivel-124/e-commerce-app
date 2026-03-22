@@ -1,7 +1,12 @@
-<nav>
+
   <h2>E-Commerce</h2>
   <ul>
     <li><a routerLink="/">Home</a></li>
     <li><a routerLink="/products">Products</a></li>
+    <li>
+      <a routerLink="/cart">
+        Cart ({{ cartService.getCount() }})
+      </a>
+    </li>
   </ul>
 </nav>
