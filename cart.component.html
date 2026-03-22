@@ -1,0 +1,15 @@
+<h2>Your Cart</h2>
+
+<div *ngIf="cartItems.length === 0">
+  <p>Cart is empty</p>
+</div>
+
+<div *ngFor="let item of cartItems; let i = index">
+  <h3>{{ item.name }}</h3>
+  <p>₹{{ item.price }}</p>
+  <button (click)="removeItem(i)">Remove</button>
+</div>
+
+<h3>Total: ₹{{ total }}</h3>
+
+<button (click)="clearCart()">Clear Cart</button>
