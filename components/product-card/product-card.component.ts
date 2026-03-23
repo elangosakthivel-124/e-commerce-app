@@ -13,7 +13,8 @@ export class ProductCardComponent {
   constructor(private cartService: CartService) {}
 
   addToCart() {
-    this.cartService.addToCart(this.product);
-    alert('Added to cart!');
-  }
+  this.cartService.addToCart(this.product);
+  alert('Added to cart!');
+}
+  
 }
