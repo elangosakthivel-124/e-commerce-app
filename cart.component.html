@@ -4,10 +4,15 @@
   <p>Cart is empty</p>
 </div>
 
-<div *ngFor="let item of cartItems; let i = index">
+<div *ngFor="let item of cartItems">
   <h3>{{ item.name }}</h3>
   <p>₹{{ item.price }}</p>
-  <button (click)="removeItem(i)">Remove</button>
+
+  <button (click)="decrease(item.id)">-</button>
+  <span>{{ item.quantity }}</span>
+  <button (click)="increase(item.id)">+</button>
+
+  <button (click)="remove(item.id)">Remove</button>
 </div>
 
 <h3>Total: ₹{{ total }}</h3>
