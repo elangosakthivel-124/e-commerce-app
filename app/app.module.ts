@@ -22,3 +22,13 @@ import { AppRoutingModule } from './app-routing.module';
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+import { HttpClientModule } from '@angular/common/http';
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule  // ✅ ADD THIS
+  ]
+})
+export class AppModule {}
