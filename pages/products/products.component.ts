@@ -80,4 +80,18 @@ export class ProductDetailsComponent implements OnInit {
     alert('Added to cart!');
   }
 }
+<div *ngIf="loading">Loading product...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<div *ngIf="!loading && !error" class="details">
+  <img [src]="product.image" alt="{{ product.title }}">
+
+  <div>
+    <h2>{{ product.title }}</h2>
+    <p>{{ product.description }}</p>
+    <h3>₹{{ product.price }}</h3>
+
+    <button (click)="addToCart()">Add to Cart</button>
+  </div>
+</div>
 }
