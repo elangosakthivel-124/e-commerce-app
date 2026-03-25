@@ -18,7 +18,14 @@ const routes: Routes = [
 })
 export class AppRoutingModule {}
 
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'products', component: ProductsComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'product/:id', component: ProductDetailsComponent } // ✅ NEW
+];
 
   
 
