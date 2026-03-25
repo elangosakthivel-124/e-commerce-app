@@ -38,4 +38,46 @@ export class ProductsComponent implements OnInit {
       }
     });
   }
+  import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProductService } from '../../services/product.service';
+import { CartService } from '../../services/cart.service';
+import { Product } from '../../models/product';
+
+@Component({
+  selector: 'app-product-details',
+  templateUrl: './product-details.component.html'
+})
+export class ProductDetailsComponent implements OnInit {
+
+  product!: Product;
+  loading = true;
+  error = '';
+
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    private cartService: CartService
+  ) {}
+
+  ngOnInit(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.productService.getProductById(id).subscribe({
+      next: (data) => {
+        this.product = data;
+        this.loading = false;
+      },
+      error: () => {
+        this.error = 'Failed to load product';
+        this.loading = false;
+      }
+    });
+  }
+
+  addToCart() {
+    this.cartService.addToCart(this.product);
+    alert('Added to cart!');
+  }
+}
 }
