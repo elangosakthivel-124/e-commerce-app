@@ -45,6 +45,9 @@ export class ProductService {
       image: 'https://via.placeholder.com/150',
       description: 'Noise cancelling headphones'
     }
+    getProductById(id: number) {
+  return this.http.get<Product>(`${this.API_URL}/${id}`);
+}
   ];
 
   getProducts(): Product[] {
