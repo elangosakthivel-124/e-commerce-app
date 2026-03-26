@@ -30,5 +30,16 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule  // ✅ ADD THIS
   ]
+  import { FormsModule } from '@angular/forms';
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule   // ✅ REQUIRED for ngModel
+  ]
+})
+export class AppModule {}
 })
 export class AppModule {}
