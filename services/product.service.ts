@@ -54,3 +54,6 @@ export class ProductService {
     return this.products;
   }
 }
+getCategories() {
+  return this.http.get<string[]>(`${this.API_URL}/categories`);
+}
