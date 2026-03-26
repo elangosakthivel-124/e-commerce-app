@@ -26,4 +26,39 @@
   </button>
 
   <button (click)="addToCart()">Add to Cart</button>
+
+  <h2>Products</h2>
+
+<!-- 🔍 Search -->
+<input
+  type="text"
+  placeholder="Search products..."
+  [(ngModel)]="searchText"
+  (input)="applyFilters()"
+/>
+
+<!-- 📂 Category Filter -->
+<select [(ngModel)]="selectedCategory" (change)="applyFilters()">
+  <option value="">All Categories</option>
+  <option *ngFor="let cat of categories" [value]="cat">
+    {{ cat }}
+  </option>
+</select>
+
+<!-- 🔽 Sort -->
+<select [(ngModel)]="sortOrder" (change)="applyFilters()">
+  <option value="">Sort</option>
+  <option value="low">Price: Low → High</option>
+  <option value="high">Price: High → Low</option>
+</select>
+
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<div class="product-grid" *ngIf="!loading && !error">
+  <app-product-card
+    *ngFor="let product of filteredProducts"
+    [product]="product">
+  </app-product-card>
+</div>
 </div>
