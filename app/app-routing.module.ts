@@ -27,5 +27,18 @@ const routes: Routes = [
   { path: 'product/:id', component: ProductDetailsComponent } // ✅ NEW
 ];
 
+import { AuthGuard } from './guards/auth.guard';
+
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'products', component: ProductsComponent },
+  { path: 'product/:id', component: ProductDetailsComponent },
+
+  { path: 'cart', component: CartComponent, canActivate: [AuthGuard] }, // ✅ protected
+
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent }
+];
+
   
 
