@@ -28,4 +28,40 @@ export class AuthService {
   logout() {
     localStorage.removeItem('loggedIn');
   }
+  import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+
+  private API = 'http://127.0.0.1:8000';
+
+  constructor(private http: HttpClient) {}
+
+  register(user: any) {
+    return this.http.post(`${this.API}/register`, user);
+  }
+
+  login(user: any) {
+    return this.http.post<{ access_token: string }>(`${this.API}/login`, user);
+  }
+
+  saveToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.getToken();
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+  }
+}
 }
