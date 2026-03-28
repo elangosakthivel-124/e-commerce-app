@@ -23,4 +23,16 @@ export class LoginComponent {
       this.error = 'Invalid credentials';
     }
   }
+  login() {
+  this.auth.login({ email: this.email, password: this.password })
+    .subscribe({
+      next: (res) => {
+        this.auth.saveToken(res.access_token);
+        this.router.navigate(['/products']);
+      },
+      error: () => {
+        this.error = 'Invalid credentials';
+      }
+    });
+}
 }
