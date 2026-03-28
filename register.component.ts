@@ -19,4 +19,11 @@ export class RegisterComponent {
     this.auth.register(this.user);
     this.router.navigate(['/login']);
   }
+  register() {
+  this.auth.register(this.user).subscribe({
+    next: () => {
+      this.router.navigate(['/login']);
+    }
+  });
+}
 }
