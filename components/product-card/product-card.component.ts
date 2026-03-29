@@ -16,5 +16,9 @@ export class ProductCardComponent {
   this.cartService.addToCart(this.product);
   alert('Added to cart!');
 }
-  
+  addToCart() {
+  this.cartService.addToCart(this.product.id).subscribe(() => {
+    alert('Added to cart');
+  });
+}
 }
