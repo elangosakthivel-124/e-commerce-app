@@ -78,4 +78,31 @@ export class CartService {
       0
     );
   }
+  import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CartService {
+
+  private API = 'http://127.0.0.1:8000/cart';
+
+  constructor(private http: HttpClient) {}
+
+  getCart() {
+    return this.http.get<any[]>(this.API);
+  }
+
+  addToCart(productId: number) {
+    return this.http.post(this.API, {
+      product_id: productId,
+      quantity: 1
+    });
+  }
+
+  remove(id: number) {
+    return this.http.delete(`${this.API}/${id}`);
+  }
+}
 }
