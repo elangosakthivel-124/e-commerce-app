@@ -15,4 +15,21 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.products = this.productService.getProducts();
   }
+  cartItems: any[] = [];
+
+ngOnInit() {
+  this.loadCart();
+}
+
+loadCart() {
+  this.cartService.getCart().subscribe(data => {
+    this.cartItems = data;
+  });
+}
+
+remove(id: number) {
+  this.cartService.remove(id).subscribe(() => {
+    this.loadCart();
+  });
+}
 }
