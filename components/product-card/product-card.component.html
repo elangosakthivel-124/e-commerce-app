@@ -1,14 +1,11 @@
 <div class="card">
-  <img [src]="product.image" alt="{{ product.name }}">
-  <h3>{{ product.name }}</h3>
-  <p>{{ product.description }}</p>
-  <h4>₹{{ product.price }}</h4>
-  <button (click)="addToCart()">Add to Cart</button>
-</div>
-<div class="card">
-  <img [src]="product.image" alt="{{ product.title }}">
+  <img [src]="product.image" [alt]="product.title">
+  
   <h3>{{ product.title }}</h3>
+  
   <p>{{ product.description }}</p>
+  
   <h4>₹{{ product.price }}</h4>
+  
   <button (click)="addToCart()">Add to Cart</button>
 </div>
