@@ -1,18 +1,26 @@
 nav {
   display: flex;
   justify-content: space-between;
-  background: #333;
-  padding: 10px;
-  color: white;
+  align-items: center; /* vertically center items */
+  background-color: #333;
+  padding: 10px 20px; /* better spacing */
+  color: #fff;
 }
 
 ul {
   list-style: none;
   display: flex;
-  gap: 15px;
+  gap: 20px; /* slightly increased for better spacing */
+  margin: 0;
+  padding: 0;
 }
 
 a {
-  color: white;
+  color: #fff;
   text-decoration: none;
+  transition: color 0.3s ease; /* smooth hover effect */
+}
+
+a:hover {
+  color: #f0a500; /* highlight on hover */
 }
