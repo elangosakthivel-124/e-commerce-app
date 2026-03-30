@@ -2,15 +2,24 @@
 
 <div class="product-grid">
   <app-product-card
-    *ngFor="let product of products"
+    *ngFor="let product of products; trackBy: trackByProductId"
     [product]="product">
   </app-product-card>
 </div>
+
+<hr />
+
 <h2>Cart</h2>
 
-<div *ngFor="let item of cartItems">
-  <p>Product ID: {{ item.product_id }}</p>
-  <p>Quantity: {{ item.quantity }}</p>
+<div *ngIf="cartItems.length > 0; else emptyCart">
+  <div class="cart-item" *ngFor="let item of cartItems; trackBy: trackByCartId">
+    <p><strong>Product ID:</strong> {{ item.product_id }}</p>
+    <p><strong>Quantity:</strong> {{ item.quantity }}</p>
 
-  <button (click)="remove(item.id)">Remove</button>
+    <button (click)="remove(item.id)">Remove</button>
+  </div>
 </div>
+
+<ng-template #emptyCart>
+  <p>Your cart is empty.</p>
+</ng-template>
