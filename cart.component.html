@@ -1,20 +1,38 @@
 <h2>Your Cart</h2>
 
+<!-- 🛒 Empty Cart -->
 <div *ngIf="cartItems.length === 0">
   <p>Cart is empty</p>
 </div>
 
-<div *ngFor="let item of cartItems">
-  <h3>{{ item.name }}</h3>
-  <p>₹{{ item.price }}</p>
+<!-- 🧾 Cart Items -->
+<div class="cart-container" *ngIf="cartItems.length > 0">
+  <div class="cart-item" *ngFor="let item of cartItems">
+    
+    <img [src]="item.image" alt="{{ item.title }}" width="80">
 
-  <button (click)="decrease(item.id)">-</button>
-  <span>{{ item.quantity }}</span>
-  <button (click)="increase(item.id)">+</button>
+    <div class="details">
+      <h3>{{ item.title }}</h3>
+      <p>₹{{ item.price }}</p>
 
-  <button (click)="remove(item.id)">Remove</button>
+      <div class="qty-controls">
+        <button (click)="decrease(item.id)">-</button>
+        <span>{{ item.quantity || 1 }}</span>
+        <button (click)="increase(item.id)">+</button>
+      </div>
+
+      <button class="remove-btn" (click)="remove(item.id)">
+        Remove
+      </button>
+    </div>
+
+  </div>
+
+  <!-- 💰 Total -->
+  <h3 class="total">Total: ₹{{ total }}</h3>
+
+  <!-- 🧹 Clear Cart -->
+  <button class="clear-btn" (click)="clearCart()">
+    Clear Cart
+  </button>
 </div>
-
-<h3>Total: ₹{{ total }}</h3>
-
-<button (click)="clearCart()">Clear Cart</button>
