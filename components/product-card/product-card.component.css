@@ -1,20 +1,39 @@
 .card {
   border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 10px;
-  width: 200px;
+  padding: 16px;
+  border-radius: 12px;
+  width: 220px;
   text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-img {
+/* Card hover effect */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.card img {
   width: 100%;
   border-radius: 8px;
+  object-fit: cover;
 }
 
-button {
+/* Button styling */
+.card button {
   background: #007bff;
   color: white;
   border: none;
-  padding: 8px;
+  padding: 10px;
+  margin-top: 10px;
   cursor: pointer;
+  border-radius: 6px;
+  width: 100%;
+  transition: background 0.2s ease;
+}
+
+/* Button hover */
+.card button:hover {
+  background: #0056b3;
 }
