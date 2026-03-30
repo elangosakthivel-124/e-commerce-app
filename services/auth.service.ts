@@ -1,35 +1,6 @@
 import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthService {
-
-  private userKey = 'user';
-
-  register(user: any) {
-    localStorage.setItem('user', JSON.stringify(user));
-  }
-
-  login(email: string, password: string): boolean {
-    const storedUser = JSON.parse(localStorage.getItem(this.userKey) || '{}');
-
-    if (storedUser.email === email && storedUser.password === password) {
-      localStorage.setItem('loggedIn', 'true');
-      return true;
-    }
-    return false;
-  }
-
-  isLoggedIn(): boolean {
-    return localStorage.getItem('loggedIn') === 'true';
-  }
-
-  logout() {
-    localStorage.removeItem('loggedIn');
-  }
-  import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -40,28 +11,38 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  register(user: any) {
+  // 📝 Register
+  register(user: any): Observable<any> {
     return this.http.post(`${this.API}/register`, user);
   }
 
-  login(user: any) {
-    return this.http.post<{ access_token: string }>(`${this.API}/login`, user);
+  // 🔐 Login
+  login(user: { email: string; password: string }): Observable<{ access_token: string }> {
+    return this.http
+      .post<{ access_token: string }>(`${this.API}/login`, user)
+      .pipe(
+        tap(res => {
+          this.saveToken(res.access_token);
+        })
+      );
   }
 
-  saveToken(token: string) {
+  // 💾 Token Management
+  saveToken(token: string): void {
     localStorage.setItem('token', token);
   }
 
-  getToken() {
+  getToken(): string | null {
     return localStorage.getItem('token');
   }
 
+  // ✅ Auth Check
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
 
-  logout() {
+  // 🚪 Logout
+  logout(): void {
     localStorage.removeItem('token');
   }
-}
 }
