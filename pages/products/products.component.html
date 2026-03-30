@@ -1,34 +1,5 @@
 <h2>Products</h2>
 
-<div *ngFor="let product of products">
-  <h3>{{ product.name }}</h3>
-  <p>Price: ₹{{ product.price }}</p>
-</div>
-<h2>Products</h2>
-
-<div *ngIf="loading">Loading products...</div>
-<div *ngIf="error">{{ error }}</div>
-
-<div class="product-grid" *ngIf="!loading && !error">
-  <app-product-card
-    *ngFor="let product of products"
-    [product]="product">
-  </app-product-card>
-</div>
-<div class="card">
-  <img [src]="product.image" alt="{{ product.title }}">
-  <h3>{{ product.title }}</h3>
-  <p>{{ product.description | slice:0:60 }}...</p>
-  <h4>₹{{ product.price }}</h4>
-
-  <button [routerLink]="['/product', product.id]">
-    View Details
-  </button>
-
-  <button (click)="addToCart()">Add to Cart</button>
-
-  <h2>Products</h2>
-
 <!-- 🔍 Search -->
 <input
   type="text"
@@ -52,13 +23,14 @@
   <option value="high">Price: High → Low</option>
 </select>
 
-<div *ngIf="loading">Loading...</div>
+<!-- ⏳ Loading / Error -->
+<div *ngIf="loading">Loading products...</div>
 <div *ngIf="error">{{ error }}</div>
 
+<!-- 🛍️ Product Grid -->
 <div class="product-grid" *ngIf="!loading && !error">
   <app-product-card
     *ngFor="let product of filteredProducts"
     [product]="product">
   </app-product-card>
-</div>
 </div>
